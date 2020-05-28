@@ -1,0 +1,17 @@
+Dao\exceptions\IllegalOrphanException.class
+Dao\exceptions\NonexistentEntityException.class
+Dto\Servicio.class
+Dto\Tienda_.class
+Test\Test.class
+Dao\ServicioJpaController.class
+Dao\TiendaJpaController.class
+Controller\registrrar.class
+Controller\login.class
+Dao\exceptions\PreexistingEntityException.class
+Negocio\Tiendas.class
+Dao\Conexion.class
+Dto\Cliente_.class
+Dto\Tienda.class
+Dao\ClienteJpaController.class
+Dto\Cliente.class
+Dto\Servicio_.class
