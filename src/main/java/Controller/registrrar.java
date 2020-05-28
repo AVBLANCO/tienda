@@ -87,17 +87,24 @@ public class registrrar extends HttpServlet {
 
         
         Tienda t = new Tienda();
+       Tiendas ts=new Tiendas();
+ 
         t.setNombre(nombre);
+        t.setLema(lema);
+        t.setDescripcion(descripcion);
+        t.setEmail(email);
+        t.setClave(clave);
+        t.setPropietario(propietario);
+        t.setFacebook(facebook);
+        t.setWeb(web);
+        t.setImagen(imagen);
       
-        newm.setEmail(e);
-        newm.setSitioweb(s);
-        newm.setMensaje(mens);
-        newm.setUsuario(msj.buUsuario(usuario));
-        if (msj.registrar(newm)) {
-            request.setAttribute("list", msj.getMensajes());
-            request.getRequestDispatcher("mensajes.jsp").forward(request, response);
+        
+        if (ts.registrarTienda(t)) {
+            request.setAttribute("list",ts.getTiendas());
+            request.getRequestDispatcher("servicios.html").forward(request, response);
         } else {
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("index.html").forward(request, response);
         }
     }
 
