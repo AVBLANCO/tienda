@@ -5,7 +5,6 @@
  */
 package Controller;
 
-import Dto.Cliente;
 import Dto.Tienda;
 import Negocio.Tiendas;
 import java.io.IOException;
@@ -19,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Pc-Victor
  */
-public class login extends HttpServlet {
+public class registrrar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +37,10 @@ public class login extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet login</title>");
+            out.println("<title>Servlet registrrar</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet login at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet registrrar at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -75,30 +74,30 @@ public class login extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
 
+        
+        String nombre = request.getParameter("nombre");
+        String lema = request.getParameter("lema");
+        String descripcion = request.getParameter("descripcion");
         String email = request.getParameter("email");
         String clave = request.getParameter("clave");
-        Cliente cli = new Cliente();
-        //System.out.println("clave"+clave+"Email"+email);
-        cli.setEmail(email);
-        cli.setClave(clave);
+        String propietario = request.getParameter("propietario");
+        String facebook = request.getParameter("facebook");
+        String web = request.getParameter("web");
+        String imagen = request.getParameter("imagen");
 
-        Tienda tie = new Tienda();
-        tie.setEmail(email);
-        tie.setClave(clave);
-
-        Tiendas t = new Tiendas();
-     
         
-        if (t.login(cli)) {
-            //haciendo uso de jsp
-            request.getRequestDispatcher("servicios.html").forward(request, response);
-        } else if (t.loginTienda(tie)) {
-            // request.getRequestDispatcher("error.jsp").forward(request, response);
-
-            request.getRequestDispatcher("tienda.html").forward(request, response);
-
+        Tienda t = new Tienda();
+        t.setNombre(nombre);
+      
+        newm.setEmail(e);
+        newm.setSitioweb(s);
+        newm.setMensaje(mens);
+        newm.setUsuario(msj.buUsuario(usuario));
+        if (msj.registrar(newm)) {
+            request.setAttribute("list", msj.getMensajes());
+            request.getRequestDispatcher("mensajes.jsp").forward(request, response);
         } else {
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
 

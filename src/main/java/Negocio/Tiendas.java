@@ -13,6 +13,8 @@ import Dto.Cliente;
 import Dto.Servicio;
 import Dto.Tienda;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -121,5 +123,41 @@ public class Tiendas {
         }
         return false;
     }
+     
+      public void Seguir(Tienda t,Cliente c){
+          List<Cliente> lc=this.getClientes();
+          for(Cliente cli : lc){
+              if(cli.getEmail().equals(c.getEmail())){
+                  List<Tienda> ltc=cli.getTiendaList();
+                  ltc.add(t);
+              }
+          }
+      }
+      public void updateCliente(Cliente c){
+          ClienteJpaController cjc = new ClienteJpaController(con.getBd());
+        try {
+            cjc.edit(c);
+        } catch (Exception ex) {
+            Logger.getLogger(Tiendas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }
+      public Cliente FindCliente(String email,String clave){
+          List<Cliente> lc=this.getClientes();
+          for(Cliente c:lc){
+              if(c.getEmail().equals(email) && c.getClave().equals(clave)){
+                  return c;
+              }
+          }
+          return null;
+      }
+       public Tienda FindTienda(String email,String clave){
+          List<Tienda> lt=this.getTiendas();
+          for(Tienda t:lt){
+              if(t.getEmail().equals(email) && t.getClave().equals(clave)){
+                  return t;
+              }
+          }
+          return null;
+      }
 
 }
