@@ -5,12 +5,24 @@
  */
 package Test;
 
+import Dao.ClienteJpaController;
+import Dto.Cliente;
+
 /**
  *
  * @author Pc-Victor
  */
 public class Test {
     public static void main(String[] args) {
+        Cliente cliente=new Cliente();
+       cliente.setId(10);
+       cliente.setEmail("algo@algo.com");
+       cliente.setNombre("victor blanco");
+       cliente.setClave("algo");
+        
+        
+      
+        
         
     }
     

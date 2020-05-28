@@ -5,6 +5,9 @@
  */
 package Controller;
 
+import Dto.Cliente;
+import Dto.Tienda;
+import Negocio.Tiendas;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -35,7 +38,7 @@ public class login extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet login</title>");            
+            out.println("<title>Servlet login</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet login at " + request.getContextPath() + "</h1>");
@@ -71,7 +74,30 @@ public class login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        
+
+        String email = request.getParameter("email");
+        String clave = request.getParameter("clave");
+        Cliente cli = new Cliente();
+        //System.out.println("clave"+clave+"Email"+email);
+        cli.setEmail(email);
+        cli.setClave(clave);
+
+        Tienda tie = new Tienda();
+        tie.setEmail(email);
+        tie.setClave(clave);
+
+        Tiendas t = new Tiendas();
+        if (t.login(cli)) {
+            //haciendo uso de jsp
+            request.getRequestDispatcher("servicios.html").forward(request, response);
+        } else if (t.loginTienda(tie)) {
+            // request.getRequestDispatcher("error.jsp").forward(request, response);
+
+            request.getRequestDispatcher("tienda.html").forward(request, response);
+
+        } else {
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
     }
 
     /**

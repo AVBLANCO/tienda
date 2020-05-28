@@ -104,6 +104,22 @@ public class Tiendas {
     public boolean login(Cliente c){
         
         List<Cliente> listC=this.getClientes();
+        for(Cliente cliente:listC){
+            if(cliente.getEmail().equals(c.getEmail())&&cliente.getClass().equals(c.getClave())){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+     public boolean loginTienda(Tienda t){
+        List<Tienda> listT=this.getTiendas();
+        for(Tienda tienda:listT){
+            if(tienda.getEmail().equals(t.getEmail())&&tienda.getClass().equals(t.getClave())){
+                return true;
+            }
+        }
+        return false;
     }
 
 }
